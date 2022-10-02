@@ -17,11 +17,10 @@ import datetime as dt
 import traceback 
 
 def logfilename():
-  """Create datalogging file with appropriate time stamp
-  """
-  now=dt.datetime.now()
-  return 'CO2LOG-%0.4d-%0.2d-%0.2d-%0.2d%0.2d%0.2d.csv' % \
-  (now.year, now.month, now.day, now.hour, now.minute ,now.second)
+	"""Create datalogging file with appropriate time stamp  
+	"""
+	now=dt.datetime.now()
+	return 'CO2LOG-%0.4d-%0.2d-%0.2d-%0.2d%0.2d%0.2d.csv' % (now.year, now.month, now.day, now.hour, now.minute ,now.second)
 
 def connect_serial(serial_dev):
 	""" Interface with CO2 mh-z19b sensor (connect via USB)
