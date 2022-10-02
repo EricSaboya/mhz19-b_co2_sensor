@@ -66,6 +66,7 @@ def main():
 	outfname=logfilename()
 	try:
 		with open(outfname, 'a') as f:
+		f.write("time, CO2, uncertainty\n")
 			while True:
 				co2=mh_z19()
 				now=time.ctime()
