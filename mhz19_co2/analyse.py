@@ -10,7 +10,8 @@
 import os
 import numpy as np
 import pandas as pd 
-import matplotlib.pyplot 
+import matplotlib.pyplot as plt 
+from matplotlib import dates as dates
 
 
 # Analysis functions
@@ -62,7 +63,7 @@ def propagate_uncert(cstdev, c_uncert_mean):
 
 
 # Plotting functions
-def plot_timeseries(xdata, ydata, yerr, xlabel, ylabel,  savefigure):
+def plot_timeseries(xdata, ydata, yerr, xlabel, ylabel, title, savefigure):
 	""" Plot time series data
 	 	args:
 	 		xdata (float): x-axis data (usually datetime data)
@@ -70,10 +71,13 @@ def plot_timeseries(xdata, ydata, yerr, xlabel, ylabel,  savefigure):
 	 		yerr (float): y-axis data error values
 	 		xlabel (str): x-axis label
 	 		ylabel (str): y-axis label
+	 		title (str): figure title
 	 		savefigure (str): path+fname for figure saving
 
 	"""
-	fig, ax = plt.subplots(figsize=(10,8))
+	myFmt = dates.DateFormatter('%H:%M')
+
+	fig, ax = plt.subplots(figsize=(10,6))
 	ax.errorbar(xdata, 
 		        ydata, 
 		        yerr=yerr, 
@@ -87,7 +91,9 @@ def plot_timeseries(xdata, ydata, yerr, xlabel, ylabel,  savefigure):
 		        capthick=1.0)
 
 	ax.set_xlabel(xlabel)
+	ax.xaxis.set_major_formatter(myFmt)
 	ax.set_ylabel(ylabel)
+	ax.set_title(title)
 	fig.tight_layout()
 	plt.savefig(savefigure, dpi=300)
 	plt.close()
